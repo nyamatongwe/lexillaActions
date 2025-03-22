@@ -32,6 +32,9 @@ jobs:
         - name: Unit Test
           run: |
               cd test/unit
+              echo $TEST
+              echo $(TEST)
+              echo ${{ TEST }}
               nmake -f test.mak DEBUG=1 %TEST%
               cd ../..
         - name: Build Lexilla
