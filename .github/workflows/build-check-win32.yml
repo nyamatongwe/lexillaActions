@@ -28,11 +28,9 @@ jobs:
               7z x scintilla500.zip
               cd lexillaActions
         - name: Unit Test
-          env:
-            TEST: ${{ matrix.arch == 'amd64' && 'test' || '' }}
           run: |
               cd test/unit
-              nmake -f test.mak DEBUG=1 $TEST
+              nmake -f test.mak DEBUG=1 ${{ matrix.arch == 'amd64' && 'test' || '' }}
               cd ../..
         - name: Build Lexilla
           run: |
@@ -42,8 +40,8 @@ jobs:
         - uses: actions/upload-artifact@v4
           if: ${{ matrix.arch == 'amd64' }}
           with:
-              name: lexilla.dll
-              path: lexilla.dll
+              name: lexilla-${{ matrix.arch }}.dll
+              path: bin/lexilla.dll
         - name: Test lexing and folding
           run: |
               cd test
