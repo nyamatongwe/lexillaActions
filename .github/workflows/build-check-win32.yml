@@ -47,7 +47,7 @@ jobs:
               nmake -f testlexers.mak DEBUG=1 ${{ matrix.arch == 'amd64' && 'test' || '' }}
               cd ..
         - name: CheckLexilla C Example
-          if: ${{ matrix.arch == 'amd64' }}
+          if: matrix.arch == 'amd64'
           run: |
               cd examples/CheckLexilla
               cl -MP CheckLexilla.c -I ../../include -Fe: CheckLexilla
