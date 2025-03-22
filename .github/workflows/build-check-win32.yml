@@ -28,7 +28,7 @@ jobs:
               curl -O https://www.scintilla.org/scintilla500.zip
               ls
               7z x scintilla500.zip
-              cd lexilla
+              cd lexillaActions
         - name: Unit Test
           run: |
               cd test/unit
