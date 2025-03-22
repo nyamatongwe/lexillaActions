@@ -45,11 +45,9 @@ jobs:
               name: lexilla.dll
               path: lexilla.dll
         - name: Test lexing and folding
-          env:
-            TEST: ${{ matrix.arch == 'amd64' && 'test' || '' }}
           run: |
               cd test
-              nmake -f testlexers.mak DEBUG=1 $TEST
+              nmake -f testlexers.mak DEBUG=1 ${{ matrix.arch == 'amd64' && 'test' || '' }}
               cd ..
         - name: CheckLexilla C Example
           if: ${{ matrix.arch == 'amd64' }}
