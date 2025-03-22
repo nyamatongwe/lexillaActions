@@ -32,7 +32,6 @@ jobs:
         - name: Unit Test
           run: |
               cd test/unit
-              echo $env:TEST
               nmake -f test.mak DEBUG=1 $env:TEST
               cd ../..
         - name: Build Lexilla
@@ -47,7 +46,7 @@ jobs:
         - name: Test lexing and folding
           run: |
               cd test
-              nmake -f testlexers.mak DEBUG=1 ${{ matrix.arch == 'amd64' && 'test' || '' }}
+              nmake -f testlexers.mak DEBUG=1 $env:TEST
               cd ..
         - name: CheckLexilla C Example
           if: matrix.arch == 'amd64'
