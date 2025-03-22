@@ -3,6 +3,7 @@ name: "Build and check Lexilla on Win32 with Visual C++"
 on: [push]
 
 jobs:
+    # This is a job
     build:
 
         runs-on: windows-latest
