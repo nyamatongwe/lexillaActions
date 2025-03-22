@@ -13,6 +13,8 @@ jobs:
             arch:
               - amd64
               - amd64_arm64
+        env:
+          TEST: ${{ matrix.arch == 'amd64' && 'test' || '' }}
         steps:
         - uses: actions/checkout@v4
         - name: Preparing nmake
@@ -30,7 +32,7 @@ jobs:
         - name: Unit Test
           run: |
               cd test/unit
-              nmake -f test.mak DEBUG=1 ${{ matrix.arch == 'amd64' && 'test' || '' }}
+              nmake -f test.mak DEBUG=1 %TEST%
               cd ../..
         - name: Build Lexilla
           run: |
